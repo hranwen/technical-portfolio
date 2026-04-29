@@ -1,9 +1,10 @@
 type ArrowProps = {
   size?: number;
   className?: string;
+  direction?: "ne" | "left";
 };
 
-export function Arrow({ size = 10, className }: ArrowProps) {
+export function Arrow({ size = 10, className, direction = "ne" }: ArrowProps) {
   return (
     <svg
       width={size}
@@ -17,8 +18,17 @@ export function Arrow({ size = 10, className }: ArrowProps) {
       className={className}
       aria-hidden="true"
     >
-      <path d="M3.5 8.5 L8.5 3.5" />
-      <path d="M4.5 3.5 L8.5 3.5 L8.5 7.5" />
+      {direction === "left" ? (
+        <>
+          <path d="M9 6 L3 6" />
+          <path d="M6 3 L3 6 L6 9" />
+        </>
+      ) : (
+        <>
+          <path d="M3.5 8.5 L8.5 3.5" />
+          <path d="M4.5 3.5 L8.5 3.5 L8.5 7.5" />
+        </>
+      )}
     </svg>
   );
 }
